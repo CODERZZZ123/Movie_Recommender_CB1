@@ -9,20 +9,7 @@ def import_movies_data(filelocation):
     data = np.loadtxt(filelocation , delimiter=',')
     return data
 
-# def mean_normalize_data1(Y,R):
-#     for i in range(Y.shape[0]):
-#         sum = 0 
-#         count = 0;
-#         for j in range(Y.shape[1]):
-#             if R[i][j] == 1 :
-#                 sum = sum + Y[i][j]
-#                 count = count + 1
-#         for j in range(Y.shape[1]):
-#             if R[i][j] == 1:
-#                 Y[i][j] = Y[i][j] - sum/count  
-#     return Y
-
 def mean_normalize_data2(Y,R):
     Y_mean = (np.sum(Y*R,axis=1)/np.sum(R,axis = 1)).reshape(-1,1)
     Y_norm = Y - np.multiply(Y_mean,R)
-    return Y_norm
+    return(Y_norm,Y_mean) 
